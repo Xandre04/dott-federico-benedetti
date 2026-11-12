@@ -10,13 +10,20 @@
 <meta property="og:locale" content="it_IT">
 <meta property="og:title" content="Dott. Federico Benedetti | Psicologo e Psicoterapeuta">
 <meta property="og:description" content="Uno spazio di ascolto per adolescenti, adulti e coppie. In studio a Pordenone e Porcia, oppure online.">
-<!-- TODO: quando il sito ha un dominio, aggiungere og:url, og:image e link canonical con l'indirizzo completo -->
+<!-- se il sito passa a un dominio proprio, aggiornare questi indirizzi, robots.txt e sitemap.xml -->
+<link rel="canonical" href="https://xandre04.github.io/dott-federico-benedetti/">
+<meta property="og:url" content="https://xandre04.github.io/dott-federico-benedetti/">
+<meta property="og:image" content="https://xandre04.github.io/dott-federico-benedetti/img/seduta.jpg">
+<meta property="og:image:alt" content="Il Dott. Federico Benedetti durante un colloquio nel suo studio">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='32' fill='%235d6c46'/><text x='32' y='42' font-family='Georgia,serif' font-size='28' text-anchor='middle' fill='%23fbf7ef'>FB</text></svg>">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "MedicalBusiness",
   "name": "Dott. Federico Benedetti, Psicologo e Psicoterapeuta",
+  "url": "https://xandre04.github.io/dott-federico-benedetti/",
+  "image": "https://xandre04.github.io/dott-federico-benedetti/img/ritratto.jpg",
   "description": "Psicoterapia cognitivo-costruttivista per adolescenti, adulti e coppie. In studio a Pordenone e Porcia, oppure online.",
   "telephone": "+393926814583",
   "email": "federico.benedetti86@gmail.com",
@@ -30,11 +37,12 @@
 }
 </script>
 <noscript><style>.reveal{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}</style></noscript>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
-<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<!-- caratteri, icone e script sono ospitati qui: nessuna richiesta a server esterni, nessun cookie -->
+<link rel="preload" href="assets/fonts/dm-serif-display-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/figtree-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/icons/light.css">
+<link rel="stylesheet" href="assets/icons/fill.css">
 <style>
 :root{
   color-scheme:light;
@@ -117,11 +125,20 @@ nav{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-c
 .about-media{position:relative}
 .about-media .inset{position:absolute;right:-28px;bottom:-40px;width:38%;aspect-ratio:1;object-fit:cover;border-radius:20px;border:6px solid var(--bg);box-shadow:0 18px 40px rgb(47 51 39 / .22)}
 .about p+p{margin-top:1rem}
-.timeline{list-style:none;padding:0;margin-top:36px;display:grid;gap:20px}
-.timeline li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
-.timeline i{font-size:1.4rem;color:var(--olive);background:var(--sage);width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
-.timeline strong{display:block}
-.timeline span{color:var(--muted);font-size:.95rem}
+.link-cv{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-weight:600;color:var(--olive-dk);text-underline-offset:4px}
+
+/* formazione ed esperienza */
+.cv-sec{padding-top:24px}
+.cv-cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:40px}
+.cv-cols h3{display:flex;align-items:center;gap:10px;font-size:1.5rem;margin-bottom:8px}
+.cv-cols h3 i{color:var(--olive);font-size:1.6rem}
+.cv{border-top:1px solid var(--line)}
+.cv>div{display:grid;grid-template-columns:88px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.cv dt{font-family:var(--serif);font-size:1.15rem;color:var(--clay);line-height:1.3}
+.cv dd{margin:0}
+.cv strong{display:block;font-weight:600;line-height:1.35}
+.cv span{color:var(--muted);font-size:.93rem}
+@media (max-width:900px){.cv-cols{grid-template-columns:1fr;gap:40px}.cv>div{grid-template-columns:76px 1fr}}
 
 /* aree: fascia oliva */
 .band-olive{background:var(--olive);color:var(--olive-ink);padding:64px 0 72px}
@@ -241,6 +258,9 @@ footer .mark{border-color:var(--olive-ink);color:var(--olive-ink)}
 .band-clay .form p{color:var(--muted);font-size:.88rem}
 .band-clay .form .btn{background:var(--olive);color:var(--olive-ink);border-color:var(--olive);margin-top:0;justify-content:center;cursor:pointer;font-family:inherit}
 .form-status:empty{display:none}
+.form .check{display:flex;align-items:flex-start;gap:10px;font-weight:400;font-size:.9rem;color:var(--muted)}
+.form .check input{width:18px;height:18px;flex:none;margin-top:3px;accent-color:var(--olive)}
+.form .check a{color:var(--olive-dk)}
 
 /* fondo pagina */
 footer{padding:64px 0 28px}
@@ -474,12 +494,41 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
     <div class="reveal">
       <h2>Piacere, Federico</h2>
       <p>Sono psicologo e psicoterapeuta, iscritto all'Albo A degli Psicologi del Friuli Venezia Giulia (n. 2086). Lavoro con un orientamento cognitivo-costruttivista: ogni persona ha un modo unico di dare senso a ciò che vive.</p>
-      <p>Ho collaborato con il Centro di Salute Mentale di Pordenone, seguendo adulti e giovani adulti con ansia, depressione, difficoltà relazionali e sessuali, ritiro sociale e momenti di crisi. Mi sono occupato in particolare di patologie neurologiche, decadimento cognitivo, violenza di genere e dipendenze.</p>
-      <ul class="timeline">
-        <li><i class="ph-light ph-graduation-cap"></i><div><strong>Specializzazione in Psicoterapia (2024)</strong><span>CESIPc, Centro Studi in Psicoterapia Cognitiva</span></div></li>
-        <li><i class="ph-light ph-hospital"></i><div><strong>Centro di Salute Mentale di Pordenone</strong><span>Collaborazione clinica con adulti e giovani adulti</span></div></li>
-        <li><i class="ph-light ph-certificate"></i><div><strong>Master in Psicodiagnostica, Sapienza Università di Roma</strong><span>Valutazione clinica, forense e medico-legale (2025)</span></div></li>
-      </ul>
+      <p>Per quattro anni ho lavorato al Centro di Salute Mentale di Pordenone, con colloqui individuali e di gruppo, seguendo adulti e giovani adulti con ansia, depressione, difficoltà relazionali, ritiro sociale e momenti di crisi.</p>
+      <p>Ho lavorato anche in una comunità per adolescenti, con ragazzi nello spettro autistico, nel servizio di primo ascolto psicologico delle farmacie comunali e nella valutazione neuropsicologica in ospedale. Dal 2023 ricevo come libero professionista.</p>
+      <a class="link-cv" href="#percorso">Formazione ed esperienza <i class="ph-light ph-arrow-down"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="cv-sec" id="percorso">
+  <div class="wrap">
+    <h2 class="reveal">Formazione ed esperienza</h2>
+    <div class="cv-cols">
+      <div class="reveal">
+        <h3><i class="ph-light ph-graduation-cap"></i> Formazione</h3>
+        <dl class="cv">
+          <div><dt>2025</dt><dd><strong>Master di II livello in Psicodiagnostica</strong><span>Valutazione clinica, forense e medico-legale. Sapienza Università di Roma</span></dd></div>
+          <div><dt>2024</dt><dd><strong>Specializzazione in Psicoterapia</strong><span>Indirizzo cognitivo-costruttivista. CESIPc, Centro Studi in Psicoterapia Cognitiva</span></dd></div>
+          <div><dt>2024</dt><dd><strong>Laurea in Scienze dell'educazione e della formazione</strong><span>Università di Ferrara</span></dd></div>
+          <div><dt>2019</dt><dd><strong>Iscrizione all'Albo degli Psicologi</strong><span>Ordine degli Psicologi del Friuli Venezia Giulia, n. 2086</span></dd></div>
+          <div><dt>2018</dt><dd><strong>Perfezionamento su violenza di genere</strong><span>Prevenzione, contrasto e sostegno. Università di Trieste</span></dd></div>
+          <div><dt>2017</dt><dd><strong>Laurea magistrale in Psicologia</strong><span>Università di Trieste</span></dd></div>
+          <div><dt>2011</dt><dd><strong>Laurea in Scienze psicologiche</strong><span>Cognitive e psicobiologiche. Università di Padova</span></dd></div>
+        </dl>
+      </div>
+      <div class="reveal">
+        <h3><i class="ph-light ph-briefcase"></i> Esperienza clinica</h3>
+        <dl class="cv">
+          <div><dt>dal 2023</dt><dd><strong>Libero professionista</strong><span>Psicologo e psicoterapeuta a Pordenone e Porcia</span></dd></div>
+          <div><dt>2024</dt><dd><strong>Comunità per adolescenti</strong><span>Gruppi terapeutici e colloqui con minori con disturbi del comportamento. The Help Onlus, Trieste</span></dd></div>
+          <div><dt>2020-2023</dt><dd><strong>Lo psicologo in farmacia</strong><span>Servizio gratuito di primo ascolto psicologico. Farmacie Comunali FVG</span></dd></div>
+          <div><dt>2019-2022</dt><dd><strong>Centro di Salute Mentale di Pordenone</strong><span>Colloqui psicologici e psicoterapia, individuali e di gruppo</span></dd></div>
+          <div><dt>2022</dt><dd><strong>Disturbi dello spettro autistico</strong><span>Valutazione e riabilitazione. Fondazione Bambini e Autismo, Pordenone</span></dd></div>
+          <div><dt>2022-2023</dt><dd><strong>Comunità per minori stranieri</strong><span>Accoglienza e inserimento. Fondazione Opera Sacra Famiglia, Pordenone</span></dd></div>
+          <div><dt>2017-2018</dt><dd><strong>Reparto di Neurologia</strong><span>Test neuropsicologici e recupero cognitivo. Ospedale di Pordenone</span></dd></div>
+        </dl>
+      </div>
     </div>
   </div>
 </section>
@@ -501,7 +550,7 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
     <details>
       <summary><i class="ph-light ph-plus"></i> Tutte le aree</summary>
       <div class="pills">
-        <span>ADHD</span><span>Aggressività</span><span>Assertività</span><span>Autostima</span><span>Disturbi alimentari</span><span>Disturbi dell'apprendimento</span><span>Disturbi della personalità</span><span>Disturbi psicosomatici</span><span>Disturbo bipolare</span><span>Disturbo ossessivo compulsivo</span><span>Ipocondria</span><span>Mobbing</span><span>Paura di volare</span><span>Relazioni sociali</span><span>Tecniche di rilassamento</span><span>Trauma psicologico</span><span>Violenza di genere</span><span>Orientamento scolastico e professionale</span><span>Psicologia dello sport</span><span>Psicologia forense</span><span>Terapia familiare</span><span>Test QI</span>
+        <span>ADHD</span><span>Aggressività</span><span>Assertività</span><span>Autostima</span><span>Disturbi alimentari</span><span>Disturbi dello spettro autistico</span><span>Disturbi dell'apprendimento</span><span>Disturbi della personalità</span><span>Disturbi psicosomatici</span><span>Disturbo bipolare</span><span>Disturbo ossessivo compulsivo</span><span>Ipocondria</span><span>Mobbing</span><span>Paura di volare</span><span>Relazioni sociali</span><span>Tecniche di rilassamento</span><span>Trauma psicologico</span><span>Violenza di genere</span><span>Orientamento scolastico e professionale</span><span>Psicologia dello sport</span><span>Psicologia forense</span><span>Terapia familiare</span><span>Test QI</span>
       </div>
     </details>
   </div>
@@ -577,6 +626,8 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
       <details name="faq"><summary>Quello che dico resta riservato?<i class="ph-light ph-plus"></i></summary><p>Sì. Come psicologo sono tenuto al segreto professionale dal Codice Deontologico: ciò che emerge nei colloqui resta tra noi.</p></details>
       <details name="faq"><summary>Quanto costa?<i class="ph-light ph-plus"></i></summary><p>Tra 40 e 80 € a seduta, in base al tipo di percorso. Rilascio regolare fattura, detraibile come spesa sanitaria.</p></details>
       <details name="faq"><summary>Come funzionano i colloqui online?<i class="ph-light ph-plus"></i></summary><p>In videochiamata o al telefono, all'orario concordato. Ti servono solo un posto tranquillo dove parlare liberamente e una connessione stabile.</p></details>
+      <!-- TODO: da confermare quale bonus (nazionale, regionale, universitario) e le condizioni -->
+      <details name="faq"><summary>Posso usare il bonus psicologo?<i class="ph-light ph-plus"></i></summary><p>Aderisco al bonus psicologo per studenti. Scrivimi e verifichiamo insieme se puoi usarlo e come attivarlo.</p></details>
       <details name="faq"><summary>Serve la prescrizione del medico?<i class="ph-light ph-plus"></i></summary><p>No. Puoi contattarmi direttamente, senza impegnativa.</p></details>
       <details name="faq"><summary>Che differenza c'è tra psicologo e psicoterapeuta?<i class="ph-light ph-plus"></i></summary><p>Lo psicologo offre sostegno, consulenza e valutazione. Lo psicoterapeuta ha in più una specializzazione di quattro anni che abilita alla cura dei disturbi psicologici. Io sono entrambi.</p></details>
     </div>
@@ -615,6 +666,7 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
       <label>Email o telefono<input name="contatto" required></label>
       <label>Messaggio<textarea name="messaggio" required></textarea></label>
       <p>Bastano poche parole: dei dettagli parliamo a voce.</p>
+      <label class="check"><input type="checkbox" name="privacy" required> <span>Ho letto l'<a href="privacy.html" target="_blank">informativa privacy</a> e acconsento a essere ricontattato.</span></label>
       <button class="btn" type="submit">Invia il messaggio</button>
       <p class="form-status" role="status"></p>
     </form>
@@ -654,11 +706,11 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
   </div>
   <div class="wrap fbottom">
     <span>Albo A degli Psicologi FVG n. 2086 &nbsp; P.IVA 01724880933 &nbsp; PEC federicobenedetti@psypec.it</span>
-    <a href="#">Privacy e cookie</a>
+    <a href="privacy.html">Privacy e cookie</a>
   </div>
 </footer>
 
-<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/lenis.min.js"></script>
 <script>
 if (window.Lenis && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const lenis = new Lenis({lerp: .09});

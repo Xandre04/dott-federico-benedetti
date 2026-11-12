@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xandre04.github.io/dott-federico-benedetti/sitemap.xml
