@@ -55,7 +55,10 @@
 html{scroll-padding-top:96px}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
-body{font-family:Figtree,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:Figtree,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+/* niente scorrimento laterale su telefono; clip (non hidden) non rompe il menu fisso */
+html,body{overflow-x:clip}
+a[href^="mailto"]{overflow-wrap:anywhere}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--clay);outline-offset:3px;border-radius:6px}
@@ -163,7 +166,7 @@ summary::-webkit-details-marker{display:none}
 .pills span{display:block;padding:7px 0;border-bottom:1px solid color-mix(in srgb,var(--olive-ink) 18%,transparent);font-size:.95rem;color:var(--olive-ink);break-inside:avoid}
 
 /* percorsi */
-.fhead{position:relative;isolation:isolate;padding:clamp(40px,7vw,90px) 0 clamp(30px,5vw,70px)}
+.fhead{position:relative;isolation:isolate;overflow:clip;padding:clamp(40px,7vw,90px) 0 clamp(30px,5vw,70px)}
 .ghost-word{position:absolute;left:50%;top:58%;translate:-50% -50%;z-index:-1;font-family:var(--serif);font-size:clamp(5rem,17vw,15rem);line-height:1;color:var(--sage);white-space:nowrap;pointer-events:none;user-select:none}
 .formats{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:calc(-1 * clamp(20px,4vw,60px));position:relative}
 .format{border-radius:var(--r);padding:32px;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;background:var(--surface);border:1px solid var(--line);position:relative;overflow:hidden}
@@ -278,6 +281,8 @@ footer .fbottom{margin-top:48px;padding-top:24px;border-top:1px solid color-mix(
   .faq .wrap>div:first-child{position:static}
   .faq summary{font-size:1.2rem}
   footer .fcols{grid-template-columns:1fr 1fr;gap:32px 24px}
+  footer .fcols>div{min-width:0}
+  footer .fcols>div:first-child,footer .fcols>div:last-child{grid-column:1/-1}
   .facts{border-top:0}
   .fact,.fact:first-child{border-left:0;border-top:1px solid var(--line);padding:18px 8px 20px 0}
   .themes{gap:0 24px}
