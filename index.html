@@ -27,7 +27,10 @@
   "description": "Psicoterapia cognitivo-costruttivista per adolescenti, adulti e coppie. In studio a Pordenone e Porcia, oppure online.",
   "telephone": "+393926814583",
   "email": "federico.benedetti86@gmail.com",
-  "priceRange": "40-80 €",
+  "priceRange": "60-80 €",
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "14:30", "closes": "18:30"}
+  ],
   "vatID": "01724880933",
   "areaServed": ["Pordenone", "Porcia"],
   "location": [
@@ -215,8 +218,13 @@ blockquote{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);line-heig
 .band-clay .btn{background:var(--surface);color:var(--clay);border-color:var(--surface);margin-top:28px}
 .band-clay .btn:hover{background:var(--bg)}
 .info{background:var(--surface);color:var(--ink);border-radius:var(--r);padding:12px 28px}
-.info div{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
-.info div:last-child{border-bottom:0}
+.info>div{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.info>div:last-child{border-bottom:0}
+.hours{flex:1}
+.hours table{border-collapse:collapse;margin:6px 0 4px;width:100%;max-width:300px;font-size:.93rem}
+.hours th{text-align:left;font-weight:400;color:var(--muted);padding:2px 12px 2px 0}
+.hours td{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hours span{font-size:.88rem}
 .info i{font-size:1.5rem;color:var(--olive);margin-top:2px}
 .band-clay .info p{color:var(--muted)}
 .info strong{display:block;color:var(--ink)}
@@ -442,6 +450,60 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
   .circle{aspect-ratio:auto;border-radius:32px;padding:36px 24px}
   .wave{height:40px}
 }
+
+/* telefono: pagina piu' corta (il computer resta invariato) */
+.more-btn,.form-toggle{display:none}
+@media (max-width:900px){
+  section{padding:56px 0}
+  .about{padding-top:56px}
+  .about-media .blob img{aspect-ratio:4/3}
+
+  /* formazione: prime tre voci per colonna, il resto con "Mostra tutto" */
+  .cv-sec:not(.open) .cv>div:nth-child(n+5){display:none}
+  .more-btn{display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:12px 20px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--olive-dk);font:inherit;font-weight:600;cursor:pointer}
+
+  /* percorsi */
+  .format{min-height:0;padding:24px 22px}
+  .format .big{font-size:3.4rem;top:18px;right:20px}
+  .format h3{font-size:1.7rem}
+  .fact{padding:14px 8px 16px 0}
+
+  /* citazione e principi */
+  .quote-card{min-height:420px}
+  .principles{gap:22px;margin-top:40px}
+  .principles>div{display:grid;grid-template-columns:40px 1fr;column-gap:12px;padding-top:18px}
+  .principles i{grid-row:span 2;font-size:1.8rem}
+  .principles h3{font-size:1.25rem;margin:0 0 4px}
+
+  /* recensioni su due colonne */
+  .score{font-size:5rem}
+  .themes{grid-template-columns:1fr 1fr;gap:0 18px}
+  .themes div{padding:16px 0 18px}
+  .themes strong{font-size:1.08rem}
+  .themes p{font-size:.88rem}
+
+  /* passi compatti: icona a sinistra */
+  #inizio .steps{gap:10px;margin-top:28px}
+  .step{min-height:0;flex-direction:row;align-items:center;gap:16px;padding:18px 20px}
+  .step .ic{width:52px;height:52px;font-size:1.6rem;flex:none}
+  .step h3{font-size:1.25rem;margin-bottom:2px}
+  .step p{font-size:.9rem}
+  .step::after{font-size:4.5rem;right:14px;top:auto;bottom:-6px}
+  .band-sand{padding:40px 0 100px}
+
+  /* modulo: si apre con un bottone */
+  .form-toggle{display:inline-flex;margin-top:20px;width:100%;justify-content:center;cursor:pointer;font:inherit;font-weight:600}
+  .band-clay .form-toggle{background:transparent;color:var(--olive-ink);border:1px solid color-mix(in srgb,var(--olive-ink) 60%,transparent);border-radius:999px;padding:13px 20px}
+  .band-clay:not(.form-open) .form{display:none}
+  .form-toggle[hidden]{display:none}
+  .band-clay .wrap{gap:24px}
+
+  /* fondo pagina: le sezioni sono gia' nel menu */
+  footer .fcols>div:nth-child(2),footer .fcols>div:nth-child(3){display:none}
+  .cv-sec:not(.open) .cv span{display:none}
+  .cv-sec:not(.open) .cv>div{padding:12px 0}
+  footer{padding-top:44px}
+}
 </style>
 </head>
 <body>
@@ -535,6 +597,7 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
         </dl>
       </div>
     </div>
+    <button class="more-btn" type="button" aria-expanded="false">Mostra tutto <i class="ph-light ph-caret-down"></i></button>
   </div>
 </section>
 
@@ -543,10 +606,10 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
   <div class="wrap">
     <div class="center reveal">
       <h2>Di cosa mi occupo</h2>
-      <p>Un primo colloquio serve a capire insieme quale percorso può essere utile.</p>
+      <p>Un primo colloquio serve a capire insieme quale percorso può essere utile. Quando serve, lavoro in collaborazione con psichiatri e altri specialisti.</p>
     </div>
     <ul class="areas">
-      <li class="reveal"><a href="#contatti"><i class="ph-light ph-wind lead"></i><h3>Ansia e umore</h3><p>Attacchi di panico, fobie, depressione, stress, burnout, insonnia, lutto.</p><i class="ph-light ph-arrow-up-right"></i></a></li>
+      <li class="reveal"><a href="#contatti"><i class="ph-light ph-wind lead"></i><h3>Ansia e umore</h3><p>Attacchi di panico, fobie, stress post-traumatico, depressione, burnout, insonnia, lutto.</p><i class="ph-light ph-arrow-up-right"></i></a></li>
       <li class="reveal"><a href="#contatti"><i class="ph-light ph-heart lead"></i><h3>Coppia e relazioni</h3><p>Terapia di coppia, dipendenza affettiva, gelosia, sessualità.</p><i class="ph-light ph-arrow-up-right"></i></a></li>
       <li class="reveal"><a href="#contatti"><i class="ph-light ph-link-break lead"></i><h3>Dipendenze</h3><p>Gioco d'azzardo, alcol, sostanze, fumo.</p><i class="ph-light ph-arrow-up-right"></i></a></li>
       <li class="reveal"><a href="#contatti"><i class="ph-light ph-clipboard-text lead"></i><h3>Psicodiagnostica</h3><p>Test di personalità, test cognitivi e neuropsicologici, valutazioni forensi.</p><i class="ph-light ph-arrow-up-right"></i></a></li>
@@ -575,8 +638,8 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
     <div class="facts">
       <div class="fact reveal"><i class="ph-light ph-armchair"></i><strong>In studio</strong><span>Pordenone e Porcia</span></div>
       <div class="fact reveal"><i class="ph-light ph-video-camera"></i><strong>Online o al telefono</strong><span>Ovunque tu sia</span></div>
-      <div class="fact reveal"><i class="ph-light ph-calendar-blank"></i><strong>Anche nel weekend</strong><span>Orari da concordare</span></div>
-      <div class="fact price reveal"><span>A seduta</span><strong>40-80 €</strong><span>Detraibile come spesa sanitaria</span></div>
+      <div class="fact reveal"><i class="ph-light ph-calendar-blank"></i><strong>Dal lunedì al sabato</strong><span>14:30 - 18:30, su appuntamento</span></div>
+      <div class="fact price reveal"><span>A seduta</span><strong>60-80 €</strong><span>Detraibile come spesa sanitaria</span></div>
     </div>
   </div>
 </section>
@@ -629,7 +692,7 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
       <details name="faq" open><summary>Come si svolge il primo colloquio?<i class="ph-light ph-plus"></i></summary><p>È un incontro per conoscerci. Mi racconti cosa ti porta qui, con le parole che vuoi, e capiamo insieme se e come posso esserti utile. Non serve prepararsi.</p></details>
       <details name="faq"><summary>Quanto dura una seduta e ogni quanto ci si vede?<i class="ph-light ph-plus"></i></summary><p>Una seduta dura circa 50 minuti. Di solito ci si vede una volta alla settimana, ma la frequenza si decide insieme in base al percorso e alle tue esigenze.</p></details>
       <details name="faq"><summary>Quello che dico resta riservato?<i class="ph-light ph-plus"></i></summary><p>Sì. Come psicologo sono tenuto al segreto professionale dal Codice Deontologico: ciò che emerge nei colloqui resta tra noi.</p></details>
-      <details name="faq"><summary>Quanto costa?<i class="ph-light ph-plus"></i></summary><p>Tra 40 e 80 € a seduta, in base al tipo di percorso. Rilascio regolare fattura, detraibile come spesa sanitaria.</p></details>
+      <details name="faq"><summary>Quanto costa?<i class="ph-light ph-plus"></i></summary><p>Tra 60 e 80 € a seduta, in base al tipo di percorso. Rilascio regolare fattura, detraibile come spesa sanitaria.</p></details>
       <details name="faq"><summary>Come funzionano i colloqui online?<i class="ph-light ph-plus"></i></summary><p>In videochiamata o al telefono, all'orario concordato. Ti servono solo un posto tranquillo dove parlare liberamente e una connessione stabile.</p></details>
       <!-- TODO: da confermare quale bonus (nazionale, regionale, universitario) e le condizioni -->
       <details name="faq"><summary>Posso usare il bonus psicologo?<i class="ph-light ph-plus"></i></summary><p>Aderisco al bonus psicologo per studenti. Scrivimi e verifichiamo insieme se puoi usarlo e come attivarlo.</p></details>
@@ -661,9 +724,14 @@ body::before{content:"";position:fixed;inset:0;z-index:30;pointer-events:none;op
       <div class="info">
       <div><i class="ph-light ph-phone"></i><p><strong>Telefono e WhatsApp</strong><a href="tel:+393926814583">+39 392 681 4583</a></p></div>
       <div><i class="ph-light ph-envelope-simple"></i><p><strong>Email</strong><a href="mailto:federico.benedetti86@gmail.com">federico.benedetti86@gmail.com</a></p></div>
+      <div><i class="ph-light ph-clock"></i><div class="hours"><strong>Orari di ricevimento</strong><table>
+        <tr><th>Dal lunedì al sabato</th><td>14:30 - 18:30</td></tr>
+        <tr><th>Domenica</th><td>Chiuso</td></tr>
+      </table><span>Su appuntamento</span></div></div>
       <div><i class="ph-light ph-map-pin"></i><p><strong>Studio di Pordenone</strong><span>Piazza Risorgimento 21, 33170 Pordenone</span><br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Piazza+Risorgimento+21+Pordenone" target="_blank" rel="noopener">Apri la mappa</a></p></div>
       <div><i class="ph-light ph-map-pin"></i><p><strong>Studio di Porcia</strong><span>Via della Fornace 13, 33080 Porcia (PN)</span><br><a class="map" href="https://www.google.com/maps/search/?api=1&query=Via+della+Fornace+13+Porcia" target="_blank" rel="noopener">Apri la mappa</a></p></div>
       </div>
+      <button class="form-toggle" type="button" aria-controls="modulo" aria-expanded="false">Oppure scrivimi un messaggio</button>
     </div>
     <form class="form reveal" id="modulo">
       <h3>Oppure scrivimi qui</h3>
@@ -780,6 +848,22 @@ if (motion) {
     })(t0);
   }), {threshold: .6}).observe(score);
 }
+
+// su telefono: "Mostra tutto" nella formazione, modulo che si apre con un bottone
+const cvSec = document.querySelector('.cv-sec'), more = cvSec.querySelector('.more-btn');
+more.addEventListener('click', () => {
+  const open = cvSec.classList.toggle('open');
+  more.setAttribute('aria-expanded', open);
+  more.firstChild.textContent = open ? 'Mostra meno ' : 'Mostra tutto ';
+  more.lastElementChild.className = open ? 'ph-light ph-caret-up' : 'ph-light ph-caret-down';
+});
+const clay = document.querySelector('.band-clay'), ft = clay.querySelector('.form-toggle');
+ft.addEventListener('click', () => {
+  clay.classList.add('form-open');
+  ft.setAttribute('aria-expanded', 'true');
+  ft.hidden = true;
+  document.querySelector('#modulo input').focus();
+});
 
 // ponytail: il modulo non ha un server. Apre il programma di posta con il messaggio pronto;
 // per l'invio diretto collegare un servizio (es. Formspree) quando il sito va online.
